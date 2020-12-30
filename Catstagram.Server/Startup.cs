@@ -30,7 +30,14 @@ namespace Catstagram.Server
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddIdentity<User,IdentityRole>()
+            services.AddIdentity<User,IdentityRole>(options=> {
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequiredLength = 6;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+
+            })
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             var appSettingsSection = Configuration.GetSection("AppSettings");
