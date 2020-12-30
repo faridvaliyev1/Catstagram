@@ -1,5 +1,6 @@
 using Catstagram.Server.Data;
 using Catstagram.Server.Data.Models;
+using Catstagram.Server.Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -92,6 +93,8 @@ namespace Catstagram.Server
             {
                 endpoints.MapControllers();
             });
+
+            app.ApplyMigrations();
         }
     }
 }
