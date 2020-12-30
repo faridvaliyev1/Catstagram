@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Catstagram.Server.Controllers
 {
     [ApiController]
-    public class HomeController : ControllerBase
+    public class HomeController : ApiController
     {
        [Authorize]
        [Route("[controller]")]
