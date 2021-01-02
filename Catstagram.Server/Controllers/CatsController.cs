@@ -12,7 +12,12 @@ namespace Catstagram.Server.Controllers
 {
     public class CatsController : ApiController
     {
-        private readonly ApplicationDbContext data;
+        private readonly ApplicationDbContext _context;
+
+        public CatsController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
 
         [Authorize]
         [HttpPost]
@@ -27,9 +32,9 @@ namespace Catstagram.Server.Controllers
                 UserId = userId
             };
 
-            data.Add(cat);
+            _context.Add(cat);
 
-             await data.SaveChangesAsync();
+             await _context.SaveChangesAsync();
 
             return Created(nameof(Create), cat.Id);
         }
