@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Catstagram.Server.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210102124014_CatsTable")]
-    partial class CatsTable
+    [Migration("20210102133620_CatsTableRename")]
+    partial class CatsTableRename
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -45,7 +45,7 @@ namespace Catstagram.Server.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Cat");
+                    b.ToTable("Cats");
                 });
 
             modelBuilder.Entity("Catstagram.Server.Data.Models.User", b =>
@@ -249,7 +249,7 @@ namespace Catstagram.Server.Data.Migrations
                     b.HasOne("Catstagram.Server.Data.Models.User", "user")
                         .WithMany("Cats")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("user");

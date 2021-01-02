@@ -11,6 +11,8 @@ namespace Catstagram.Server.Data
         {
         }
 
+        public DbSet<Cat> Cats { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Cat>().

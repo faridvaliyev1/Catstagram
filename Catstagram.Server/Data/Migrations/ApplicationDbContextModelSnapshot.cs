@@ -43,7 +43,7 @@ namespace Catstagram.Server.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Cat");
+                    b.ToTable("Cats");
                 });
 
             modelBuilder.Entity("Catstagram.Server.Data.Models.User", b =>
@@ -247,7 +247,7 @@ namespace Catstagram.Server.Data.Migrations
                     b.HasOne("Catstagram.Server.Data.Models.User", "user")
                         .WithMany("Cats")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("user");

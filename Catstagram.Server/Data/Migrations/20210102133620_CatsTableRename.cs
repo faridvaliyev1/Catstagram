@@ -2,7 +2,7 @@
 
 namespace Catstagram.Server.Data.Migrations
 {
-    public partial class CatsTable : Migration
+    public partial class CatsTableRename : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -43,7 +43,7 @@ namespace Catstagram.Server.Data.Migrations
                 oldMaxLength: 128);
 
             migrationBuilder.CreateTable(
-                name: "Cat",
+                name: "Cats",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -54,25 +54,25 @@ namespace Catstagram.Server.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Cat", x => x.Id);
+                    table.PrimaryKey("PK_Cats", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Cat_AspNetUsers_UserId",
+                        name: "FK_Cats_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Cat_UserId",
-                table: "Cat",
+                name: "IX_Cats_UserId",
+                table: "Cats",
                 column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Cat");
+                name: "Cats");
 
             migrationBuilder.AlterColumn<string>(
                 name: "Name",
