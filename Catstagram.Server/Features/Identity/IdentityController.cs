@@ -1,5 +1,4 @@
 ﻿using Catstagram.Server.Data.Models;
-using Catstagram.Server.Models.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -10,19 +9,22 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Catstagram.Server.Controllers
+namespace Catstagram.Server.Features.Identity
 {
     public class IdentityController : ApiController
     {
         private readonly UserManager<User> _userManager;
         private readonly IOptions<AppSettings> options;
+        private readonly IIdentityService _identityService;
 
-        public IdentityController(UserManager<User> userManager,IOptions<AppSettings> options)
+        public IdentityController(UserManager<User> userManager,IOptions<AppSettings> options,IIdentityService identityService)
         {
             _userManager = userManager;
             this.options = options;
+            _identityService = identityService;
         }
         [Route(nameof(Register))]
+        [HttpPost]
         public async Task<ActionResult> Register(RegisterRequestModel model)
         {
             var user = new User
@@ -42,6 +44,7 @@ namespace Catstagram.Server.Controllers
         }
 
         [Route(nameof(Login))]
+        [HttpPost]
         public async Task<ActionResult<object>> Login(LoginRequestModel model)
         {
             var user =await _userManager.FindByNameAsync(model.UserName);
@@ -53,26 +56,12 @@ namespace Catstagram.Server.Controllers
 
             if (!passwordValid)
                 return Unauthorized();
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(options.Value.Secret);
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(new []
-                {
-                    new Claim(ClaimTypes.NameIdentifier,user.Id),
-                    new Claim(ClaimTypes.Name,user.UserName)
-                    
-                }),
-                Expires = DateTime.Now.AddDays(7),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-            };
 
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-            var encryptedToken = tokenHandler.WriteToken(token);
+            var token = _identityService.GenerateJwtToken(user.Id, user.UserName, options.Value.Secret);
 
-            return new
+            return new LoginResponseModel
             {
-                Token = encryptedToken
+                Token = token
             };
         }
     }

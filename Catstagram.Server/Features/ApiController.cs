@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Catstagram.Server.Controllers
+namespace Catstagram.Server.Features
 {
     [ApiController]
     [Route("[controller]")]
