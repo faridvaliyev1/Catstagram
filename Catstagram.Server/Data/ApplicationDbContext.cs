@@ -10,5 +10,16 @@ namespace Catstagram.Server.Data
             : base(options)
         {
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Cat>().
+                HasOne(c => c.user).
+                WithMany(u => u.Cats).
+                HasForeignKey(c => c.UserId).
+                OnDelete(DeleteBehavior.Restrict);
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
