@@ -394,3 +394,9 @@ C:\Users\Farid\source\repos\Catstagram.Server\Catstagram.Server\obj\Release\net5
 C:\Users\Farid\source\repos\Catstagram.Server\Catstagram.Server\obj\Release\net5.0\win-x86\ref\Catstagram.Server.dll
 C:\Users\Farid\source\repos\Catstagram.Server\Catstagram.Server\obj\Release\net5.0\win-x86\Catstagram.Server.pdb
 C:\Users\Farid\source\repos\Catstagram.Server\Catstagram.Server\obj\Release\net5.0\win-x86\Catstagram.Server.genruntimeconfig.cache
+C:\Users\Farid\source\repos\Catstagram.Server\Catstagram.Server\bin\Release\net5.0\win-x86\Microsoft.OpenApi.dll
+C:\Users\Farid\source\repos\Catstagram.Server\Catstagram.Server\bin\Release\net5.0\win-x86\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Farid\source\repos\Catstagram.Server\Catstagram.Server\bin\Release\net5.0\win-x86\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Farid\source\repos\Catstagram.Server\Catstagram.Server\bin\Release\net5.0\win-x86\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\Farid\source\repos\Catstagram.Server\Catstagram.Server\obj\Release\net5.0\win-x86\Catstagram.Server.csprojAssemblyReference.cache
+C:\Users\Farid\source\repos\Catstagram.Server\Catstagram.Server\obj\Release\net5.0\win-x86\Catstagram.Server.MvcApplicationPartsAssemblyInfo.cs

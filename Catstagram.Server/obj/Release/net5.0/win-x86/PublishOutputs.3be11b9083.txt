@@ -372,6 +372,10 @@ C:\Users\Farid\source\repos\Catstagram.Server\Catstagram.Server\obj\Release\net5
 C:\Users\Farid\source\repos\Catstagram.Server\Catstagram.Server\obj\Release\net5.0\win-x86\PubTmp\Out\Microsoft.IdentityModel.Protocols.dll
 C:\Users\Farid\source\repos\Catstagram.Server\Catstagram.Server\obj\Release\net5.0\win-x86\PubTmp\Out\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\Farid\source\repos\Catstagram.Server\Catstagram.Server\obj\Release\net5.0\win-x86\PubTmp\Out\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Farid\source\repos\Catstagram.Server\Catstagram.Server\obj\Release\net5.0\win-x86\PubTmp\Out\Microsoft.OpenApi.dll
+C:\Users\Farid\source\repos\Catstagram.Server\Catstagram.Server\obj\Release\net5.0\win-x86\PubTmp\Out\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Farid\source\repos\Catstagram.Server\Catstagram.Server\obj\Release\net5.0\win-x86\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Farid\source\repos\Catstagram.Server\Catstagram.Server\obj\Release\net5.0\win-x86\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\Farid\source\repos\Catstagram.Server\Catstagram.Server\obj\Release\net5.0\win-x86\PubTmp\Out\System.Configuration.ConfigurationManager.dll
 C:\Users\Farid\source\repos\Catstagram.Server\Catstagram.Server\obj\Release\net5.0\win-x86\PubTmp\Out\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\Farid\source\repos\Catstagram.Server\Catstagram.Server\obj\Release\net5.0\win-x86\PubTmp\Out\System.Runtime.Caching.dll
