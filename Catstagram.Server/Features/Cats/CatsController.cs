@@ -28,9 +28,7 @@ namespace Catstagram.Server.Features.Cats
         [HttpGet]
         public async Task<ActionResult<CatDetailsServiceModel>> Details(int id)
         {
-            var cat = await _catsService.Details(id);
-
-            return cat.OrNotFound();
+            return await _catsService.Details(id);
         }
 
         [HttpPost]

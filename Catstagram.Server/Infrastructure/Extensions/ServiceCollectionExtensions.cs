@@ -2,6 +2,7 @@
 using Catstagram.Server.Data.Models;
 using Catstagram.Server.Features.Cats;
 using Catstagram.Server.Features.Identity;
+using Catstagram.Server.Infrastructure.Filters;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
@@ -68,6 +69,11 @@ namespace Catstagram.Server.Infrastructure
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "My Catstagram API", Version = "v1" });
             });
             return services;
+        }
+
+        public static void AddApiControllers(this IServiceCollection services)
+        {
+            services.AddControllers(options => options.Filters.Add<ModelOrNotFoundActionFilter>());
         }
 
     }

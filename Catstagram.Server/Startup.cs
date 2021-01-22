@@ -1,5 +1,6 @@
 using Catstagram.Server.Data;
 using Catstagram.Server.Infrastructure;
+using Catstagram.Server.Infrastructure.Filters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -27,7 +28,7 @@ namespace Catstagram.Server
                 .AddJwtAuthentication(services.GetAppSettings(Configuration))
                 .AddApplicationServices()
                 .AddSwagger()
-                .AddControllers();
+                .AddApiControllers();
                 
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
