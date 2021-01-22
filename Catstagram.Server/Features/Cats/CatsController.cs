@@ -30,10 +30,7 @@ namespace Catstagram.Server.Features.Cats
         {
             var cat = await _catsService.Details(id);
 
-            if (cat == null)
-                return NotFound();
-
-            return cat;
+            return cat.OrNotFound();
         }
 
         [HttpPost]
