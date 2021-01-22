@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Catstagram.Server.Features.Cats
 {
+    [Authorize]
     public class CatsController : ApiController
     {
         private readonly ICatsService _catsService;
@@ -14,10 +15,8 @@ namespace Catstagram.Server.Features.Cats
         {
             _catsService = catsService;
         }
-
-        [Authorize]
         [HttpGet]
-        public async Task<IEnumerable<CatListingResponseModel>> Mine()
+        public async Task<IEnumerable<CatListingServiceModel>> Mine()
         {
             var userId = User.GetId();
 
@@ -26,9 +25,19 @@ namespace Catstagram.Server.Features.Cats
             return cats;
         }
 
-        [Authorize]
+        [HttpGet]
+        public async Task<ActionResult<CatDetailsServiceModel>> Details(int id)
+        {
+            var cat = await _catsService.Details(id);
+
+            if (cat == null)
+                return NotFound();
+
+            return cat;
+        }
+
         [HttpPost]
-        public async Task<ActionResult<int>> Create(CreateRequestModeL model)
+        public async Task<ActionResult<int>> Create(CreateCatRequestModel model)
         {
             var userId = this.User.GetId();
 

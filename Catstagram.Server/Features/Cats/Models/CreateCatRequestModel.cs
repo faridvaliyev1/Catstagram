@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Catstagram.Server.Models.Cats
 {
     using static Data.Validation.Cat;
-    public class CreateRequestModeL
+    public class CreateCatRequestModel
     {
         [Required]
         [MaxLength(MaxDescriptionLength)]

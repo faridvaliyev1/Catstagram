@@ -2,7 +2,6 @@
 using Catstagram.Server.Data.Models;
 using Catstagram.Server.Models.Cats;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -18,10 +17,10 @@ namespace Catstagram.Server.Features.Cats
             _context = context;
         }
 
-        public async Task<IEnumerable<CatListingResponseModel>> ByUser(string UserId)
+        public async Task<IEnumerable<CatListingServiceModel>> ByUser(string UserId)
         {
             return await _context.Cats.Where(c => c.UserId == UserId)
-                 .Select(c => new CatListingResponseModel
+                 .Select(c => new CatListingServiceModel
                  {
                      Id = c.Id,
                      ImageUrl = c.ImageUrl
@@ -29,7 +28,8 @@ namespace Catstagram.Server.Features.Cats
                 .ToListAsync();
         }
 
-        public async Task<int> Create(CreateRequestModeL model,string userId)
+
+        public async Task<int> Create(CreateCatRequestModel model,string userId)
         {
             var cat = new Cat
             {
@@ -43,6 +43,20 @@ namespace Catstagram.Server.Features.Cats
             await _context.SaveChangesAsync();
 
             return cat.Id;
+        }
+
+        public async Task<CatDetailsServiceModel> Details(int Id)
+        {
+           return await _context.Cats.Where(c => c.Id == Id)
+                .Select(c => new CatDetailsServiceModel
+                {
+                   Id=c.Id,
+                   UserId=c.UserId,
+                   ImageUrl=c.ImageUrl,
+                   Description=c.Description,
+                   UserName=c.user.UserName
+                }).
+                FirstOrDefaultAsync();
         }
     }
 }
