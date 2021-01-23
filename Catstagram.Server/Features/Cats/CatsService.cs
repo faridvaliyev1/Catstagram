@@ -58,5 +58,21 @@ namespace Catstagram.Server.Features.Cats
                 }).
                 FirstOrDefaultAsync();
         }
+
+        public async Task<bool> Update(int id, string description, string userId)
+        {
+            var cat = await _context.Cats.
+                 Where(c => c.Id == id && c.UserId == userId)
+                 .FirstOrDefaultAsync();
+
+            if (cat == null)
+                return false;
+
+            cat.Description = description;
+
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
     }
 }

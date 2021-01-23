@@ -1,4 +1,5 @@
-﻿using Catstagram.Server.Infrastructure;
+﻿using Catstagram.Server.Features.Cats.Models;
+using Catstagram.Server.Infrastructure;
 using Catstagram.Server.Models.Cats;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -39,6 +40,25 @@ namespace Catstagram.Server.Features.Cats
             var id = await _catsService.Create(model, userId);
 
             return Created(nameof(Create),id);
+        }
+
+        [HttpPut]
+
+        public async Task<ActionResult> Update(UpdateCatRequestModel model)
+        {
+            var userId = User.GetId();
+
+            var updated = await _catsService.Update(
+                model.Id,
+                model.Description,
+                userId);
+
+            if(!updated)
+            {
+                return BadRequest();
+            }
+
+            return Ok();
         }
     }
 }
