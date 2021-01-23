@@ -45,6 +45,20 @@ namespace Catstagram.Server.Features.Cats
             return cat.Id;
         }
 
+        public async Task<bool> Delete(int id, string UserId)
+        {
+            var cat = await ByIdAndUserId(id, UserId);
+
+            if(cat == null)
+                return false;
+
+            _context.Cats.Remove(cat);
+
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
+
         public async Task<CatDetailsServiceModel> Details(int Id)
         {
            return await _context.Cats.Where(c => c.Id == Id)
@@ -61,10 +75,7 @@ namespace Catstagram.Server.Features.Cats
 
         public async Task<bool> Update(int id, string description, string userId)
         {
-            var cat = await _context.Cats.
-                 Where(c => c.Id == id && c.UserId == userId)
-                 .FirstOrDefaultAsync();
-
+            var cat = await ByIdAndUserId(id, userId);
             if (cat == null)
                 return false;
 
@@ -73,6 +84,13 @@ namespace Catstagram.Server.Features.Cats
             await _context.SaveChangesAsync();
 
             return true;
+        }
+
+        private async Task<Cat> ByIdAndUserId(int id,string UserId)
+        {
+            return await _context.Cats
+                .Where(c => c.Id == id && c.UserId == UserId)
+                .FirstOrDefaultAsync();
         }
     }
 }

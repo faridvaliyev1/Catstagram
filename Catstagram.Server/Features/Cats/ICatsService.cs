@@ -10,6 +10,7 @@ namespace Catstagram.Server.Features.Cats
        Task<IEnumerable<CatListingServiceModel>> ByUser(string UserId);
        Task<CatDetailsServiceModel> Details(int Id);
        Task<bool> Update(int id, string description, string userId);
+       Task<bool> Delete(int id,string UserId);
     }
 
 }
